@@ -7,14 +7,9 @@ connectDB(); // Anropar funktionen för att ansluta till databasen
 const app = express(); // Skapar en express-applikation
 app.use(express.json()); // Middleware för att tolka JSON-data i inkommande förfrågningar
 
-// grundroute för test
-app.get("/", (req, res) => {
-    res.send("API is running..."); // Svarar med ett meddelande när root-routen anropas
-})
-
 
 // start servern på port från miljövariabel eller standardport 5000
 const PORT = process.env.PORT || 5000; // Använder miljövariabeln PORT eller standardport 5000
-app.listen(PORT, () => {
+app.listen(PORT, () => { // Startar servern och lyssnar på angiven port
     console.log(`Server is running on port ${PORT}`); // Loggar att servern är igång
 })
