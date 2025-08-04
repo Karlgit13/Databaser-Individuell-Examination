@@ -1,5 +1,5 @@
 const User = require("../models/user");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 // Registrerar en ny användare
@@ -27,7 +27,7 @@ exports.register = async (req, res) => {
         res.status(500).json({ error: "Ett fel uppstod vid registrering." });
     }
 }
-
+const hej = "hej";
 
 exports.login = async (req, res) => {
     try {

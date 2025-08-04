@@ -8,6 +8,10 @@ const app = express(); // Skapar en express-applikation
 app.use(express.json()); // Middleware för att tolka JSON-data i inkommande förfrågningar
 
 
+const authRoutes = require('./routes/authRoutes'); // Importerar autentiseringsrutter
+app.use("api", authRoutes)
+
+
 // start servern på port från miljövariabel eller standardport 5000
 const PORT = process.env.PORT || 5000; // Använder miljövariabeln PORT eller standardport 5000
 app.listen(PORT, () => { // Startar servern och lyssnar på angiven port

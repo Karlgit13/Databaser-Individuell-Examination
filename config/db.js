@@ -8,10 +8,10 @@ const connectDB = async () => {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
+        console.log('MongoDB connected successfully');
         // försöker ansluta till databasen med hjälp av mongoose.connect och miljövariabeln MONGODB_URI
         // useNewUrlParser och useUnifiedTopology är alternativ som används för att undvika varningar i konsolen
         // samt för att använda den senaste versionen av MongoDB:s drivrutin
-        console.log('MongoDB connected successfully');
         // loggar ett meddelande om att anslutningen lyckades
     } catch (error) {
         console.error('MongoDB connection failed:', error.message);
