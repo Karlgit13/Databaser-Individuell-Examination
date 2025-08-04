@@ -9,7 +9,7 @@ app.use(express.json()); // Middleware för att tolka JSON-data i inkommande fö
 
 
 const authRoutes = require('./routes/authRoutes'); // Importerar autentiseringsrutter
-app.use("api", authRoutes)
+app.use("/api", authRoutes)
 
 
 // start servern på port från miljövariabel eller standardport 5000

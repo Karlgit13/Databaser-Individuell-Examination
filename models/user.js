@@ -14,6 +14,6 @@ const userSchema = new mongoose.Schema({
 })
 
 
-// här exporterar vi modellen för att kunna användas i controllers och routes
-// mongoose.model skapar en modell baserad på schemat och namnger den "User"
-exports = mongoose.model("User", userSchema);
+// här exporterar vi modellen User som kan användas i andra filer
+// mongoose.model skapar en modell baserat på schemat userSchema
+module.exports = mongoose.model("User", userSchema);
