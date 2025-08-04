@@ -1,10 +1,19 @@
 const mongoose = require("mongoose");
 
+
+// här definerar vi en användare som kan logga in och skriva recensioner
+// varje användare har ett användarnamn, e-postadress, lösenord och roll (user eller admin)
+// mongoose.Schema används för att skapa ett schema som definierar dessa fält
+// varje fält har en typ och vissa fält är markerade som unika (unique) för att undvika dubbletter
+// användarnamnet och e-postadressen måste vara unika för varje användare
 const userSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
     email: { type: String, reuireqd: true, unique: true },
-    password: {type : String, required:true},
-    role: {type : String, enum: ["user", "admin"], default: "user"}
+    password: { type: String, required: true },
+    role: { type: String, enum: ["user", "admin"], default: "user" }
 })
 
-exports = mongoose.model("User", userSchema); // Exporterar modellen för användning i andra filer
+
+// här exporterar vi modellen för att kunna användas i controllers och routes
+// mongoose.model skapar en modell baserad på schemat och namnger den "User"
+exports = mongoose.model("User", userSchema);
