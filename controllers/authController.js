@@ -28,7 +28,7 @@ exports.register = async (req, res) => {
     }
 }
 
-
+// loggar in en användare
 exports.login = async (req, res) => {
     try {
         const { email, password } = req.body;
