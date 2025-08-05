@@ -27,7 +27,7 @@ exports.register = async (req, res) => {
         res.status(500).json({ error: "Ett fel uppstod vid registrering." });
     }
 }
-const hej = "hej";
+
 
 exports.login = async (req, res) => {
     try {
