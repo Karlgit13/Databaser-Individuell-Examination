@@ -9,7 +9,10 @@ app.use(express.json()); // Middleware för att tolka JSON-data i inkommande fö
 
 
 const authRoutes = require('./routes/authRoutes'); // Importerar autentiseringsrutter
+const movieRoutes = require('./routes/movieRoutes'); // Importerar filmrutter
+const Movie = require('./models/movie');
 app.use("/api", authRoutes)
+app.use("/api/movies", movieRoutes)
 
 
 // start servern på port från miljövariabel eller standardport 5000

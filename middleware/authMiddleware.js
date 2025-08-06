@@ -1,16 +1,24 @@
 const jwt = require("jsonwebtoken");
 
 const authMiddleware = (req, res, next) => {
-    const token = req.header("Authorization")?.replace("Bearer ", "");
-    if (!token) return res.status(401).json({ message: "Access denied" });
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+        return res.status(401).json({ error: "Ingen giltig token tillhandahölls." });
+    }
+
+    const token = authHeader.split(" ")[1]
 
     try {
-        const verified = jwt.verify(token, process.env.JWT_SECRET);
-        req.user = verified; // { id, role }
-        next();
-    } catch (err) {
-        res.status(400).json({ message: "Invalid token" });
+        const decoded = jwt.verify(token, process.env.JWT_SECRET)
+        req.user = {
+            id: decoded.id,
+            role: decoded.role
+        };
+        next()
+    } catch (error) {
+        console.error("Token verifiering misslyckades:", error);
+        return res.status(401).json({ error: "Ogiltig token." });
     }
-};
+}
 
 module.exports = authMiddleware;

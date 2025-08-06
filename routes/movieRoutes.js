@@ -6,9 +6,9 @@ const roleMiddleware = require('../middleware/roleMiddleware');
 
 
 // offentliga routes
-router.get("/", movieController.getAllMoivies);
-router.get("/:id", movieController.getMovieById);
-router.get(":id/reviews", movieController.getMovieReviews)
+router.get("/", movieController.getAllMovies);
+router.get("/:id", movieController.getMoviesById);
+router.get("/:id/reviews", movieController.getReviewsByMovieId)
 
 // endast admin
 router.post("/", authMiddleware, roleMiddleware("admin"), movieController.createMovie);
