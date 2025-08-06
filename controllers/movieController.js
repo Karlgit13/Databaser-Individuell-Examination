@@ -61,7 +61,7 @@ exports.updateMovie = async (req, res) => {
 // delete /movies/:id
 exports.deleteMovie = async (req, res) => {
     try {
-        const deletedMovie = await movie.findByIdAndDelete(req.params.id)
+        const deletedMovie = await Movie.findByIdAndDelete(req.params.id)
         if (!deletedMovie) {
             return res.status(404).json({ error: "Filmen hittades inte," })
         }
@@ -75,11 +75,11 @@ exports.deleteMovie = async (req, res) => {
 // get /movies/:id/reviews
 exports.getReviewsByMovieId = async (req, res) => {
     try {
-        const Reviews = await review.find({ MovieId: req.params.id }).populate("userId");
-        if (Reviews.length === 0) {
+        const review = await Review.find({ movieId: req.params.id }).populate("userId");
+        if (review.length === 0) {
             return res.status(404).json({ error: "Inga recensioner hittades för denna film." });
         }
-        res.json(Reviews)
+        res.json(review)
     } catch (error) {
         console.error("kunde inte hämta recensioner:", error)
         res.status(500).json({ error: "Fel vid hämtning av recensioner." })

@@ -10,9 +10,10 @@ app.use(express.json()); // Middleware för att tolka JSON-data i inkommande fö
 
 const authRoutes = require('./routes/authRoutes'); // Importerar autentiseringsrutter
 const movieRoutes = require('./routes/movieRoutes'); // Importerar filmrutter
-const Movie = require('./models/movie');
+const ratingRoutes = require('./routes/ratingRoutes'); // Importerar betygsrutter
 app.use("/api", authRoutes)
 app.use("/api/movies", movieRoutes)
+app.use("/api/movies", ratingRoutes) // Använder betygsrutter under /api
 
 
 // start servern på port från miljövariabel eller standardport 5000
@@ -20,3 +21,4 @@ const PORT = process.env.PORT || 5000; // Använder miljövariabeln PORT eller s
 app.listen(PORT, () => { // Startar servern och lyssnar på angiven port
     console.log(`Server is running on port ${PORT}`); // Loggar att servern är igång
 })
+

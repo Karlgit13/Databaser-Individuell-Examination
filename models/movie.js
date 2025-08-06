@@ -11,6 +11,14 @@ const movieSchema = new mongoose.Schema({
     genre: { type: String, required: true },
 })
 
+
+movieSchema.virtual("reviews", {
+    ref: "review",           // Modellnamn (samma som du använde i review.js)
+    localField: "_id",       // fält på Movie
+    foreignField: "movieId"  // fält på Review
+});
+
+
 // exporterar modellen för att kunna användas i controllers och routes
 // mongoose.model skapar en modell baserad på schemat och namnger den "Movie"
 // detta gör att vi kan interagera med filmer i databasen

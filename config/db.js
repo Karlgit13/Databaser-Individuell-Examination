@@ -4,10 +4,7 @@ const mongoose = require('mongoose');
 const connectDB = async () => {
     // här definieras en asynkron funktion för att ansluta till databasen
     try {
-        await mongoose.connect(process.env.MONGODB_URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
+        await mongoose.connect(process.env.MONGODB_URI);
         console.log('MongoDB connected successfully');
         // försöker ansluta till databasen med hjälp av mongoose.connect och miljövariabeln MONGODB_URI
         // useNewUrlParser och useUnifiedTopology är alternativ som används för att undvika varningar i konsolen

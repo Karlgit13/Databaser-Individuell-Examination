@@ -8,7 +8,7 @@ const mongoose = require("mongoose");
 // användarnamnet och e-postadressen måste vara unika för varje användare
 const userSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
-    email: { type: String, reuireqd: true, unique: true },
+    email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     role: { type: String, enum: ["user", "admin"], default: "user" }
 })
