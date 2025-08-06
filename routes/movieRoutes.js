@@ -8,10 +8,10 @@ const ratingsController = require("../controllers/ratingsController");
 
 
 // offentliga routes
-router.get("/", movieController.getAllMovies);
-router.get("/:id", movieController.getMoviesById);
-router.get("/:id/reviews", movieController.getReviewsByMovieId)
 router.get("/ratings", ratingsController.getMovieRatings);
+router.get("/", movieController.getAllMovies);
+router.get("/:id/reviews", movieController.getReviewsByMovieId)
+router.get("/:id", movieController.getMoviesById);
 
 // endast admin
 router.post("/", authMiddleware, roleMiddleware("admin"), movieController.createMovie);
