@@ -4,12 +4,15 @@ const mongoose = require("mongoose")
 // varje film har en titel, regissör, utgivningsår och genre
 // mongoose.Schema används för att skapa ett schema som definierar dessa fält
 // varje fält har en typ och alla fält är markerade som obligatoriska (required)
-const movieSchema = new mongoose.Schema({
-    title: { type: String, required: true },
-    director: { type: String, required: true },
-    releaseYear: { type: Number, required: true },
-    genre: { type: String, required: true },
-})
+const movieSchema = new mongoose.Schema(
+    {
+        title: { type: String, required: true, trim: true },
+        director: { type: String, required: true, trim: true },
+        releaseYear: { type: Number, required: true },
+        genre: { type: String, required: true, trim: true },
+    },
+    { toJSON: { virtuals: true }, toObject: { virtuals: true } }
+);
 
 
 movieSchema.virtual("reviews", {

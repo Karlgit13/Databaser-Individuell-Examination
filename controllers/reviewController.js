@@ -1,9 +1,14 @@
 // controllers/reviewController.js
 const Review = require('../models/review');
 const Movie = require('../models/movie');
+const { validateId } = require('../middleware/validateId');
 
 // POST /api/reviews
 exports.createReview = async (req, res) => {
+
+    // Validera movieId från body
+    if (!validateId(req.body.movieId, res)) return;
+
     try {
         const { movieId, rating, comment } = req.body;
         // Kontrollera att filmen finns
@@ -40,6 +45,10 @@ exports.getAllReviews = async (req, res) => {
 
 // GET /api/reviews/:id
 exports.getReviewById = async (req, res) => {
+
+    // Validera movieId från body
+    if (!validateId(req.body.movieId, res)) return;
+
     try {
         const review = await Review.findById(req.params.id)
             .populate('userId', 'username')
@@ -56,6 +65,10 @@ exports.getReviewById = async (req, res) => {
 
 // PUT /api/reviews/:id
 exports.updateReview = async (req, res) => {
+
+    // Validera movieId från body
+    if (!validateId(req.body.movieId, res)) return;
+
     try {
         const updated = await Review.findByIdAndUpdate(
             req.params.id,
@@ -74,6 +87,10 @@ exports.updateReview = async (req, res) => {
 
 // DELETE /api/reviews/:id
 exports.deleteReview = async (req, res) => {
+
+    // Validera movieId från body
+    if (!validateId(req.body.movieId, res)) return;
+
     try {
         const deleted = await Review.findByIdAndDelete(req.params.id);
         if (!deleted) {
