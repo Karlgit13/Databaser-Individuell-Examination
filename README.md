@@ -1,36 +1,45 @@
-Instruktioner
-Skapa backend till en webbapplikation för att hantera filmrecensioner. En användare kan registrera sig och väl inloggad så kan hen lämna rescensioner på filmer i databasen.
+# Filmrecension API
 
-Designa Mongoose-modeller för Movie, Review, och User med följande fält:
+Ett säkert och välstrukturerat REST API byggt med **Node.js**, **Express** och **MongoDB/Mongoose** för att hantera filmer, recensioner och användare med autentisering och rollbaserad åtkomstkontroll.
 
-Movie: title, director, releaseYear, genre.
-Review: movieId (referens till Movie), userId (referens till User), rating, comment, createdAt.
-User: username, email, password, role.
-Följande endpoints ska finnas med:
+## Säkerhetsfokus
 
-POST /movies: Lägg till en ny film.
-GET /movies: Hämta en lista med alla filmer.
-GET /movies/:id: Hämta detaljer för en specifik film.
-PUT /movies/:id: Uppdatera en specifik film.
-GET /movies/:id/reviews: Hämta alla recensioner för en specifik film.
-DELETE /movies/:id: Ta bort en specifik film.
-POST /reviews: Lägg till en ny recension.
-GET /reviews: Hämta en lista med alla recensioner.
-GET /reviews/:id: Hämta detaljer för en specifik recension.
-PUT /reviews/:id: Uppdatera en specifik recension.
-DELETE /reviews/:id: Ta bort en specifik recension.
-POST /register: Registrera en ny användare.
-POST /login: Logga in en användare
-Betygskriterier
-För Godkänt:
+API:t är konstruerat med **middleware som första försvarslinje**.
+Innan en förfrågan ens når dina controllers körs olika middleware som:
 
-Uppfyller all funktionalitet enligt ovan
-bifoga exempelanrop (använd till exempel: Postman) till alla endpoints (se länk under inlämning)
-Visa att datan läggs in i Mongodb DB
-För Väl Godkänt:
+- **Autentisering (JWT)** – ser till att bara inloggade användare får utföra skyddade åtgärder.
+- **Rollkontroll** – begränsar t.ex. skapande och radering av filmer till endast `admin`.
+- **ID-validering** (`validateId`) – stoppar ogiltiga MongoDB ObjectId redan innan databasen kontaktas, vilket minimerar risken för fel (som `CastError`) och förbättrar prestandan.
+- **Separat valideringslogik** gör koden renare och ger en konsekvent säkerhet på alla rutter.
 
-backend följer en MVC-arkitektur (eller motsv.)
-Lägg till en endpoint:
-GET /movies/ratings: Hämta en lista med alla filmer och deras genomsnittliga betyg.
-Använd JWT för autentisering och implementera roller: user och admin. Alla kan hämta filmer samt läsa/skriva rescensioner men endast admin kan lägga till, uppdatera eller ta bort filmer.
-Exempelanrop bifogas (Postman).
+Resultatet blir att felaktiga eller obehöriga förfrågningar blockeras **innan** de når själva databasen eller logiken.
+
+## Funktioner
+
+- **Användarhantering**: Registrera och logga in användare med JWT.
+- **Roller**: `user` och `admin` – endast admin kan skapa, uppdatera och ta bort filmer.
+- **Filmer**: Lägg till, hämta, uppdatera, ta bort filmer och visa recensioner för en specifik film.
+- **Recensioner**: Lägg till, hämta, uppdatera och ta bort recensioner.
+- **Betyg**: Hämta alla filmer med genomsnittligt betyg.
+- **Automatiserad validering** av ID:n och åtkomstkontroller via middleware.
+
+## Installation
+
+```bash
+# Klona repot
+git clone <REPO_URL>
+cd <mappnamn>
+
+# Installera beroenden
+npm install
+
+# .env.example finns vilket gör att du kan koppla upp till min mongoDB
+PORT=5000
+MONGODB_URI=<din MongoDB URI>
+JWT_SECRET=<valfri hemlig nyckel>
+
+# Starta servern
+npm run dev   # med nodemon
+# eller
+npm start     # vanlig start
+```
