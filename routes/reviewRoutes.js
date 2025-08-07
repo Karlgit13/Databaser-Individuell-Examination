@@ -1,26 +1,22 @@
 const express = require('express');
 const router = express.Router();
-const validateObjectId = require('../middleware/validateObjectId');
 const reviewController = require('../controllers/reviewController');
 const authMiddleware = require('../middleware/authMiddleware');
+const { validateId } = require('../middleware/validateId');
 
 // skapa recension (kräver inloggad användare)
-router.post("/", authMiddleware, reviewController.createReview)
+router.post("/", authMiddleware, reviewController.createReview);
 
 // hämta alla recensioner (öppet)
-router.get("/", reviewController.getAllReviews)
+router.get("/", reviewController.getAllReviews);
 
-// hämta recension efter ID (öppet)
-router.get("/:id", validateObjectId(), reviewController.getReviewById)
+// hämta recension efter ID (öppet, men validerar ID)
+router.get("/:id", validateId, reviewController.getReviewById);
 
+// uppdatera recension (kräver inloggad användare + giltigt ID)
+router.put("/:id", authMiddleware, validateId, reviewController.updateReview);
 
-// uppdatera recension (kräver inloggad användare)
-router.put("/:id", authMiddleware, validateObjectId(), reviewController.updateReview)
+// ta bort recension (kräver inloggad användare + giltigt ID)
+router.delete("/:id", authMiddleware, validateId, reviewController.deleteReview);
 
-
-// ta bort recension (kräver inloggad användare)
-router.delete("/:id", authMiddleware, validateObjectId(), reviewController.deleteReview)
-
-
-// här exporterar vi routern så att den kan användas i appen
-module.exports = router
+module.exports = router;

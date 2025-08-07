@@ -17,9 +17,6 @@ exports.getAllMovies = async (req, res) => {
 // get /movies/:id
 exports.getMoviesById = async (req, res) => {
 
-    // stoppar om ID:t inte är giltigt
-    if (!validateId(req.params.id, res)) return;
-
     // hämta filmen med det angivna ID:t
     try {
         const foundMovie = await Movie.findById(req.params.id)
@@ -35,6 +32,7 @@ exports.getMoviesById = async (req, res) => {
 
 // post /movies
 exports.createMovie = async (req, res) => {
+
     try {
         const { title, director, releaseYear, genre } = req.body
         const newMovie = new Movie({ title, director, releaseYear, genre })
@@ -48,9 +46,6 @@ exports.createMovie = async (req, res) => {
 
 // put /movies/:id
 exports.updateMovie = async (req, res) => {
-    // stoppar om ID:t inte är giltigt
-    if (!validateId(req.params.id, res)) return;
-
     // uppdaterar filmen med det angivna ID:t
     try {
         const updatedMovie = await Movie.findByIdAndUpdate(
@@ -72,9 +67,6 @@ exports.updateMovie = async (req, res) => {
 // delete /movies/:id
 exports.deleteMovie = async (req, res) => {
 
-    // stoppar om ID:t inte är giltigt
-    if (!validateId(req.params.id, res)) return;
-
     try {
         const deletedMovie = await Movie.findByIdAndDelete(req.params.id)
         if (!deletedMovie) {
@@ -89,9 +81,6 @@ exports.deleteMovie = async (req, res) => {
 
 // get /movies/:id/reviews
 exports.getReviewsByMovieId = async (req, res) => {
-
-    // stoppar om ID:t inte är giltigt
-    if (!validateId(req.params.id, res)) return;
 
     try {
         const review = await Review.find({ movieId: req.params.id }).populate("userId");
