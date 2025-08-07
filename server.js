@@ -11,9 +11,11 @@ app.use(express.json()); // Middleware för att tolka JSON-data i inkommande fö
 const authRoutes = require('./routes/authRoutes'); // Importerar autentiseringsrutter
 const movieRoutes = require('./routes/movieRoutes'); // Importerar filmrutter
 const ratingRoutes = require('./routes/ratingRoutes'); // Importerar betygsrutter
+const reviewRoutes = require('./routes/reviewRoutes'); // Importerar recensionsrutter
 app.use("/api", authRoutes)
 app.use("/api/movies", movieRoutes)
 app.use("/api/movies", ratingRoutes) // Använder betygsrutter under /api
+app.use("/api/reviews", reviewRoutes) // Använder recensionsrutter under /api
 
 
 // start servern på port från miljövariabel eller standardport 5000
