@@ -1,4 +1,3 @@
-// controllers/ratingsController.js
 const Movie = require("../models/movie");
 
 exports.getMovieRatings = async (req, res) => {

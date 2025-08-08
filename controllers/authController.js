@@ -2,7 +2,7 @@ const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-// Registrerar en ny användare
+
 exports.register = async (req, res) => {
     try {
         const { username, email, password } = req.body;
@@ -28,7 +28,6 @@ exports.register = async (req, res) => {
     }
 }
 
-// loggar in en användare
 exports.login = async (req, res) => {
     try {
         const { email, password } = req.body;
