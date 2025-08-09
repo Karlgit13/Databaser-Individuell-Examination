@@ -45,13 +45,13 @@ npm start     # vanlig start
 ```
 
 
-📦 Använda paket
-Paket           -	Funktion
-bcryptjs        - 	Hashar lösenord (JavaScript-implementation av bcrypt).
-cors            -   Tillåter Cross-Origin Resource Sharing (API-åtkomst från andra domäner).
-dotenv          -	Läser in miljövariabler från .env-filen.
-express         -	Webbramverk för Node.js – hanterar routes och middleware.
-jsonwebtoken    -   Skapar och verifierar JWT-tokens för autentisering.
-mongodb         -    MongoDB Node.js-drivrutin (direkt kommunikation med databasen).
-mongoose        -	ODM för MongoDB – schemahantering och enklare databas-anrop.
-nodemon (dev)-  -	Utvecklingsverktyg som startar om servern vid filändringar under utveckling.
+📦 Använda paket <br>
+Paket           -	Funktion <br>
+bcryptjs        - 	Hashar lösenord (JavaScript-implementation av bcrypt).<br>
+cors            -   Tillåter Cross-Origin Resource Sharing (API-åtkomst från andra domäner).<br>
+dotenv          -	Läser in miljövariabler från .env-filen.<br>
+express         -	Webbramverk för Node.js – hanterar routes och middleware.<br>
+jsonwebtoken    -   Skapar och verifierar JWT-tokens för autentisering.<br>
+mongodb         -    MongoDB Node.js-drivrutin (direkt kommunikation med databasen).<br>
+mongoose        -	ODM för MongoDB – schemahantering och enklare databas-anrop.<br>
+nodemon (dev)-  -	Utvecklingsverktyg som startar om servern vid filändringar under utveckling.<br>
