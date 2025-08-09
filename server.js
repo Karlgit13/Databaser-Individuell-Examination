@@ -21,7 +21,7 @@ const app = express();
 
 // [3] Registrera global middleware
 //     - express.json(): gör att req.body kan hantera JSON
-//     - cors(): tillåter cross-origin-förfrågningar
+//     - cors(): tillåter cross-origin-förfrågningar från andra domäner
 app.use(express.json());
 app.use(cors());
 

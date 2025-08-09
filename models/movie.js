@@ -42,7 +42,7 @@ const movieSchema = new mongoose.Schema(
  *  - Gör det möjligt att anropa .populate("reviews") vid queries.
  */
 movieSchema.virtual("reviews", {
-    ref: "review",
+    ref: "Review",
     localField: "_id",
     foreignField: "movieId"
 });

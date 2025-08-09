@@ -9,7 +9,7 @@
  *  router.post("/admin-route", authMiddleware, roleMiddleware("admin"), controllerFunction);
  *
  * Övergripande flöde:
- *  1) Ta emot en eller flera roller som ska tillåtas (t.ex. "admin", "editor").
+ *  1) Ta emot en eller flera roller som ska tillåtas (t.ex. "admin", "user").
  *  2) Returnera en middleware-funktion som:
  *     a) Kontrollerar att req.user.role finns.
  *     b) Jämför användarens roll mot de tillåtna rollerna.
