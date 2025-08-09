@@ -43,3 +43,15 @@ npm run dev   # med nodemon
 # eller
 npm start     # vanlig start
 ```
+
+
+📦 Använda paket
+Paket           -	Funktion
+bcryptjs        - 	Hashar lösenord (JavaScript-implementation av bcrypt).
+cors            -   Tillåter Cross-Origin Resource Sharing (API-åtkomst från andra domäner).
+dotenv          -	Läser in miljövariabler från .env-filen.
+express         -	Webbramverk för Node.js – hanterar routes och middleware.
+jsonwebtoken    -   Skapar och verifierar JWT-tokens för autentisering.
+mongodb         -    MongoDB Node.js-drivrutin (direkt kommunikation med databasen).
+mongoose        -	ODM för MongoDB – schemahantering och enklare databas-anrop.
+nodemon (dev)-  -	Utvecklingsverktyg som startar om servern vid filändringar under utveckling.

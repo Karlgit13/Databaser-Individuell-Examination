@@ -1,38 +1,44 @@
-// Läser in miljövariabler från .env (t.ex. PORT, MONGODB_URI, JWT_SECRET)
+/** Serveruppstart (Express + MongoDB)
+ * Syfte:
+ *  - Starta upp Express-servern.
+ *  - Ansluta till MongoDB.
+ *  - Ladda och registrera routes & middleware.
+ *
+ * Säkerhet:
+ *  - .env används för portar och DB-konfiguration.
+ *  - CORS aktiveras för att möjliggöra API-anrop från andra domäner.
+ */
 require('dotenv').config();
-
-// Importerar Express (webbserver), DB-anslutning och CORS-stöd
 const express = require('express');
 const connectDB = require('./config/db');
 const cors = require('cors');
 
-// Startar anslutningen mot MongoDB
+// [1] Starta MongoDB-anslutning
 connectDB();
 
-// Skapar en Express-app och registrerar global middleware
+// [2] Skapa en Express-app
 const app = express();
 
-// Gör att inkommande JSON-body blir tillgänglig via req.body
+// [3] Registrera global middleware
+//     - express.json(): gör att req.body kan hantera JSON
+//     - cors(): tillåter cross-origin-förfrågningar
 app.use(express.json());
-
-// Tillåter förfrågningar från andra domäner (CORS)
 app.use(cors());
 
-// Laddar in router-moduler
+// [4] Ladda in alla routes
 const authRoutes = require('./routes/authRoutes');
 const movieRoutes = require('./routes/movieRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
 
-// Monterar rutter under gemensam basväg
-// Exempel: /api/register, /api/login
-app.use('/api', authRoutes);
-// Exempel: /api/movies, /api/movies/:id, /api/movies/:id/reviews
-app.use('/api/movies', movieRoutes);
-// Exempel: /api/reviews, /api/reviews/:id
-app.use('/api/reviews', reviewRoutes);
+// [5] Registrera routes med basvägar
+//     Alla rutter under /api hanteras här
+app.use("/api", authRoutes);
+app.use("/api/movies", movieRoutes);
+app.use("/api/reviews", reviewRoutes);
 
-// Central felhanterare
-// Svarar 400 vid ogiltigt ObjectId (CastError), annars 500
+// [6] Central felhanterare
+//     - Fångar upp ogiltiga ObjectId (CastError)
+//     - Loggar övriga fel och returnerar 500
 app.use((error, req, res, next) => {
     if (error?.name === 'CastError') {
         return res.status(400).json({ error: 'Ogiltigt id.' });
@@ -41,7 +47,7 @@ app.use((error, req, res, next) => {
     res.status(500).json({ error: 'Internt serverfel' });
 });
 
-// Startar servern på vald port (från .env eller 5000)
+// [7] Starta servern
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

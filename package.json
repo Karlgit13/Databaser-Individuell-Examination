@@ -1,18 +1,18 @@
 {
   "dependencies": {
-    "bcryptjs": "^3.0.2",
-    "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
-    "express": "^5.1.0",
-    "jsonwebtoken": "^9.0.2",
-    "mongodb": "^6.17.0",
-    "mongoose": "^8.16.4"
+    "bcryptjs": "^3.0.2",        // Hashar lösenord (JavaScript-implementation av bcrypt)
+    "cors": "^2.8.5",            // Tillåter Cross-Origin Resource Sharing (API åtkomst från andra domäner)
+    "dotenv": "^16.3.1",         // Läser in miljövariabler från .env-filen
+    "express": "^5.1.0",         // Webbramverk för Node.js – hanterar routes och middleware
+    "jsonwebtoken": "^9.0.2",    // Skapar och verifierar JWT-tokens för autentisering
+    "mongodb": "^6.17.0",        // MongoDB Node.js-drivrutin (direkt kommunikation med databasen)
+    "mongoose": "^8.16.4"        // ODM för MongoDB – schemahantering och enklare DB-anrop
   },
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start": "node server.js",   // Startar servern i produktionsläge
+    "dev": "nodemon server.js"   // Startar servern i utvecklingsläge med automatisk omstart
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.10"         // Utvecklingsverktyg som startar om servern vid filändringar
   }
 }
