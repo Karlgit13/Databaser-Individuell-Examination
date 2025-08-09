@@ -1,3 +1,7 @@
+### Presentations av kod <br>
+
+# https://www.youtube.com/watch?v=Cjv-mpKeTWM
+
 # Filmrecension API
 
 Ett säkert och välstrukturerat REST API byggt med **Node.js**, **Express** och **MongoDB/Mongoose** för att hantera filmer, recensioner och användare med autentisering och rollbaserad åtkomstkontroll.
@@ -44,14 +48,13 @@ npm run dev   # med nodemon
 npm start     # vanlig start
 ```
 
-
 📦 Använda paket <br>
-Paket           -	Funktion <br>
-bcryptjs        - 	Hashar lösenord (JavaScript-implementation av bcrypt).<br>
-cors            -   Tillåter Cross-Origin Resource Sharing (API-åtkomst från andra domäner).<br>
-dotenv          -	Läser in miljövariabler från .env-filen.<br>
-express         -	Webbramverk för Node.js – hanterar routes och middleware.<br>
-jsonwebtoken    -   Skapar och verifierar JWT-tokens för autentisering.<br>
-mongodb         -    MongoDB Node.js-drivrutin (direkt kommunikation med databasen).<br>
-mongoose        -	ODM för MongoDB – schemahantering och enklare databas-anrop.<br>
-nodemon (dev)-  -	Utvecklingsverktyg som startar om servern vid filändringar under utveckling.<br>
+Paket - Funktion <br>
+bcryptjs - Hashar lösenord (JavaScript-implementation av bcrypt).<br>
+cors - Tillåter Cross-Origin Resource Sharing (API-åtkomst från andra domäner).<br>
+dotenv - Läser in miljövariabler från .env-filen.<br>
+express - Webbramverk för Node.js – hanterar routes och middleware.<br>
+jsonwebtoken - Skapar och verifierar JWT-tokens för autentisering.<br>
+mongodb - MongoDB Node.js-drivrutin (direkt kommunikation med databasen).<br>
+mongoose - ODM för MongoDB – schemahantering och enklare databas-anrop.<br>
+nodemon (dev)- - Utvecklingsverktyg som startar om servern vid filändringar under utveckling.<br>
